@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-function App() {
+import { getIsFetching, getProducts } from './store/products/selectors'
+
+import { fetchProductsRequestAction } from './store/products/actions'
+
+function App () {
+  const dispatch = useDispatch()
+
+  const isFetching = useSelector(getIsFetching)
+  const products = useSelector(getProducts)
+
+  console.log(products)
+
+  useEffect(() => {
+    dispatch(fetchProductsRequestAction())
+  }, [])
+
+  if (isFetching) return 'Loading ...'
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {products.map(product => (
+        <div key={product.id}>
+          {product.title}
+        </div>
+      ))}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
