@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getIsFetching, getProducts } from './store/products/selectors'
+import { getIsFetching, getProducts } from '../../store/products/selectors'
 
-import { fetchProductsRequestAction } from './store/products/actions'
+import { fetchProductsRequestAction } from '../../store/products/actions'
 
-function App () {
+function Products () {
   const dispatch = useDispatch()
 
   const isFetching = useSelector(getIsFetching)
   const products = useSelector(getProducts)
-
-  console.log(products)
 
   useEffect(() => {
     dispatch(fetchProductsRequestAction())
@@ -30,4 +28,4 @@ function App () {
   )
 }
 
-export default App
+export default Products
