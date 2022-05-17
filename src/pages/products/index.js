@@ -14,7 +14,7 @@ const ListWrapper = styled.div`
 `
 
 const ProductInfoContainer = styled.div`
-  padding: 10px;
+  padding: 20px;
 `
 
 const ProductCard = styled.div`
